@@ -24,6 +24,24 @@ export const HOLIDAY_FIELDS = {
   name: 'string',
 };
 
+// One entry of `get_pto_summary_v2` `pto_summary`.
+export const PTO_SUMMARY_FIELDS = {
+  policyDisplayName: 'string',
+  isFixedLeavePolicy: 'boolean',
+  accrueInDays: 'boolean',
+  accountingYearStart: 'date',
+  balanceDays: 'numeric',
+  hourlyRate: 'numeric?',
+};
+
+// `{ days }` objects read on accruing policies (`isFixedLeavePolicy`).
+export const PTO_SUMMARY_DAYS_PATHS = [
+  'accruedInCurrentPeriod',
+  'takenAndScheduled.taken',
+  'takenAndScheduled.futureApproved',
+  'takenAndScheduled.pending',
+];
+
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 function typeOf(v) {
@@ -70,6 +88,22 @@ export function validateHolidayCalendar(data) {
     const issues = checkFields(y, HOLIDAY_YEAR_FIELDS, path);
     if (Array.isArray(y?.holidays)) {
       y.holidays.forEach((h, j) => issues.push(...checkFields(h, HOLIDAY_FIELDS, `${path}.holidays[${j}]`)));
+    }
+    return issues;
+  });
+}
+
+export function validatePtoSummary(data) {
+  const list = data?.pto_summary;
+  if (!Array.isArray(list)) return [{ path: 'pto_summary', expected: 'array', actual: typeOf(list) }];
+  return list.flatMap((p, i) => {
+    const path = `pto_summary[${i}]`;
+    const issues = checkFields(p, PTO_SUMMARY_FIELDS, path);
+    if (p?.isFixedLeavePolicy) {
+      for (const sub of PTO_SUMMARY_DAYS_PATHS) {
+        const obj = sub.split('.').reduce((o, k) => o?.[k], p);
+        issues.push(...checkFields(obj, { days: 'numeric' }, `${path}.${sub}`));
+      }
     }
     return issues;
   });

@@ -25,6 +25,12 @@ export const MESSAGES = {
     durationLabel: 'Durée',
     reasonLabel: 'Motif',
     statusLabel: 'Statut',
+    balancesTitle: date => `Soldes au ${date}`,
+    takenVsAccrued: (taken, accrued) => `${taken} pris / ${accrued} acquis`,
+    balance: 'Solde',
+    planned: 'Prévu',
+    annual: 'Annuel',
+    periodSince: date => `depuis le ${date}`,
   },
   en: {
     months: ['January', 'February', 'March', 'April', 'May', 'June',
@@ -49,6 +55,12 @@ export const MESSAGES = {
     durationLabel: 'Duration',
     reasonLabel: 'Reason',
     statusLabel: 'Status',
+    balancesTitle: date => `Balances on ${date}`,
+    takenVsAccrued: (taken, accrued) => `${taken} taken / ${accrued} accrued`,
+    balance: 'Balance',
+    planned: 'Planned',
+    annual: 'Annual',
+    periodSince: date => `since ${date}`,
   },
 };
 

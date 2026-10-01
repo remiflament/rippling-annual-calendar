@@ -22,6 +22,17 @@ export const CSS = `
   #rca-body { overflow-y:auto; padding:1.5rem; flex:1; }
   #rca-loading { text-align:center; padding:3rem; color:#888; font-size:1rem; }
   .rca-meta { color:#666; margin-bottom:1rem; font-size:.9rem; }
+  .rca-bt { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#999; margin-bottom:.6rem; }
+  .rca-bal { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+  .rca-bc { background:#fff; border-radius:10px; padding:.75rem .85rem; box-shadow:0 1px 4px rgba(0,0,0,.07); }
+  .rca-bh { display:flex; align-items:center; gap:.4rem; font-size:.85rem; font-weight:600; color:#333; }
+  .rca-bp { margin-left:auto; font-size:.7rem; font-weight:400; color:#999; white-space:nowrap; }
+  .rca-bar { height:6px; background:#eee; border-radius:3px; overflow:hidden; margin:.55rem 0 .45rem; }
+  .rca-bar > div { height:100%; border-radius:3px; }
+  .rca-bar-over { background:#EF4444; }
+  .rca-bn { font-size:.85rem; color:#222; }
+  .rca-bm { display:flex; flex-wrap:wrap; gap:.25rem .75rem; font-size:.75rem; color:#777; margin-top:.2rem; }
+  .rca-neg { color:#DC2626; font-weight:600; }
   .rca-legend { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; align-items:center; }
   .rca-li { display:flex; align-items:center; gap:.4rem; font-size:.85rem; }
   .rca-dot { width:11px; height:11px; border-radius:3px; flex-shrink:0; }

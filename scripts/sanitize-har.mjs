@@ -25,6 +25,7 @@ import { fileURLToPath } from 'node:url';
 export const ENDPOINTS = {
   leave_requests: '/api/pto/api/leave_requests/',
   holiday_calendar: '/api/pto/api/get_holiday_calendar/',
+  pto_summary: '/api/pto/api/data/get_pto_summary_v2/',
 };
 
 const SHIFTED_ENDPOINTS = new Set(['leave_requests']);

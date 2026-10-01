@@ -1,7 +1,7 @@
 // Live API check. Paste dist/probe.js in the console of a logged-in
 // app.rippling.com tab. Prints field names, types and enum values only.
-import { fetchHolidayCalendarRaw, fetchLeaveRequestsRaw } from '../src/api.js';
-import { validateHolidayCalendar, validateLeaveRequests } from '../src/schema.js';
+import { fetchHolidayCalendarRaw, fetchLeaveRequestsRaw, fetchPtoSummaryRaw } from '../src/api.js';
+import { validateHolidayCalendar, validateLeaveRequests, validatePtoSummary } from '../src/schema.js';
 
 function typeOf(v) {
   if (v === null) return 'null';
@@ -26,9 +26,12 @@ function countBy(records, key) {
 
 (async () => {
   const year = new Date().getFullYear();
-  const [requests, calendar] = await Promise.all([fetchLeaveRequestsRaw(year), fetchHolidayCalendarRaw()]);
+  const [requests, calendar, summary] = await Promise.all([
+    fetchLeaveRequestsRaw(year), fetchHolidayCalendarRaw(), fetchPtoSummaryRaw(),
+  ]);
   const requestIssues = validateLeaveRequests(requests);
   const calendarIssues = validateHolidayCalendar(calendar);
+  const summaryIssues = validatePtoSummary(summary);
 
   console.group(`[rca probe] ${year}`);
   console.log('leave_requests: %s records, %s schema issue(s)',
@@ -46,6 +49,15 @@ function countBy(records, key) {
     console.log('holiday fields:');
     console.table(fieldTypes(calendar.flatMap(e => e?.holidays ?? [])));
   }
-  console.log(requestIssues.length + calendarIssues.length === 0 ? 'RESULT: OK' : 'RESULT: SCHEMA DRIFT');
+  const policies = summary?.pto_summary;
+  console.log('get_pto_summary_v2: %s policies, %s schema issue(s)',
+    Array.isArray(policies) ? policies.length : '?', summaryIssues.length);
+  if (summaryIssues.length) console.table(summaryIssues);
+  if (Array.isArray(policies)) {
+    console.log('pto_summary fields:');
+    console.table(fieldTypes(policies));
+  }
+  const issueCount = requestIssues.length + calendarIssues.length + summaryIssues.length;
+  console.log(issueCount === 0 ? 'RESULT: OK' : 'RESULT: SCHEMA DRIFT');
   console.groupEnd();
 })().catch(e => console.error('[rca probe] failed:', e));

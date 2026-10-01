@@ -1,4 +1,4 @@
-import { clearCache, loadYear } from './api.js';
+import { clearCache, loadBalances, loadYear } from './api.js';
 import { buildCalendarHTML, esc } from './render.js';
 import { CSS } from './styles.js';
 import { t } from './i18n.js';
@@ -106,8 +106,14 @@ export async function showYear(year) {
   body.innerHTML = `<div id="rca-loading">${esc(t.loading)}</div>`;
 
   try {
-    const { requests, holidays } = await loadYear(year);
-    body.innerHTML = buildCalendarHTML(year, requests, holidays);
+    // Balances are a snapshot at today's date: only meaningful for this year.
+    // Their failure must not hide the calendar.
+    const isCurrentYear = year === new Date().getFullYear();
+    const [{ requests, holidays }, balances] = await Promise.all([
+      loadYear(year),
+      isCurrentYear ? loadBalances().catch(() => null) : null,
+    ]);
+    body.innerHTML = buildCalendarHTML(year, requests, holidays, undefined, balances);
   } catch (e) {
     body.innerHTML = `<div id="rca-loading" style="color:#ef4444">${esc(t.error(e.message))}</div>`;
   }
