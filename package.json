@@ -1,0 +1,19 @@
+{
+  "name": "rippling-annual-calendar",
+  "version": "1.3.0",
+  "description": "Userscript adding a yearly leave calendar to Rippling",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "repository": "github:remiflament/rippling-annual-calendar",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

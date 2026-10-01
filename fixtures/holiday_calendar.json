@@ -1,0 +1,637 @@
+[
+  {
+    "year": 2023,
+    "holidays": [
+      {
+        "name": "New Year's",
+        "type": "FULL_DAY",
+        "startDate": "2023-01-01",
+        "endDate": "2023-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2023-04-10",
+        "endDate": "2023-04-10",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-05-01",
+        "endDate": "2023-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-05-08",
+        "endDate": "2023-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension",
+        "type": "FULL_DAY",
+        "startDate": "2023-05-18",
+        "endDate": "2023-05-18",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-07-14",
+        "endDate": "2023-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-08-15",
+        "endDate": "2023-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-11-01",
+        "endDate": "2023-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-11-11",
+        "endDate": "2023-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2023-12-25",
+        "endDate": "2023-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-01-01",
+        "endDate": "2024-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2024-04-01",
+        "endDate": "2024-04-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-05-01",
+        "endDate": "2024-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-05-08",
+        "endDate": "2024-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-05-09",
+        "endDate": "2024-05-09",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-07-14",
+        "endDate": "2024-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-08-15",
+        "endDate": "2024-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-11-01",
+        "endDate": "2024-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-11-11",
+        "endDate": "2024-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2024-12-25",
+        "endDate": "2024-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-01-01",
+        "endDate": "2025-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2025-04-21",
+        "endDate": "2025-04-21",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-05-01",
+        "endDate": "2025-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-05-08",
+        "endDate": "2025-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-05-29",
+        "endDate": "2025-05-29",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Whit Monday",
+        "type": "FULL_DAY",
+        "startDate": "2025-06-09",
+        "endDate": "2025-06-09",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-07-14",
+        "endDate": "2025-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-08-15",
+        "endDate": "2025-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-11-01",
+        "endDate": "2025-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-11-11",
+        "endDate": "2025-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2025-12-25",
+        "endDate": "2025-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "holidays": [
+      {
+        "name": "Jour de l'An",
+        "type": "FULL_DAY",
+        "startDate": "2026-01-01",
+        "endDate": "2026-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Lundi de Pâques",
+        "type": "FULL_DAY",
+        "startDate": "2026-04-06",
+        "endDate": "2026-04-06",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Fête du Travail",
+        "type": "FULL_DAY",
+        "startDate": "2026-05-01",
+        "endDate": "2026-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victoire 1945",
+        "type": "FULL_DAY",
+        "startDate": "2026-05-08",
+        "endDate": "2026-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension",
+        "type": "FULL_DAY",
+        "startDate": "2026-05-14",
+        "endDate": "2026-05-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Fête Nationale",
+        "type": "FULL_DAY",
+        "startDate": "2026-07-14",
+        "endDate": "2026-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assomption",
+        "type": "FULL_DAY",
+        "startDate": "2026-08-15",
+        "endDate": "2026-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Toussaint",
+        "type": "FULL_DAY",
+        "startDate": "2026-11-01",
+        "endDate": "2026-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice 1918",
+        "type": "FULL_DAY",
+        "startDate": "2026-11-11",
+        "endDate": "2026-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Noël",
+        "type": "FULL_DAY",
+        "startDate": "2026-12-25",
+        "endDate": "2026-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2027,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-01-01",
+        "endDate": "2027-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2027-03-29",
+        "endDate": "2027-03-29",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-05-01",
+        "endDate": "2027-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-05-06",
+        "endDate": "2027-05-06",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-05-08",
+        "endDate": "2027-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Whit Monday",
+        "type": "FULL_DAY",
+        "startDate": "2027-05-17",
+        "endDate": "2027-05-17",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-07-14",
+        "endDate": "2027-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-08-15",
+        "endDate": "2027-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-11-01",
+        "endDate": "2027-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-11-11",
+        "endDate": "2027-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2027-12-25",
+        "endDate": "2027-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2028,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-01-01",
+        "endDate": "2028-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2028-04-06",
+        "endDate": "2028-04-06",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-05-01",
+        "endDate": "2028-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-05-08",
+        "endDate": "2028-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-05-14",
+        "endDate": "2028-05-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Whit Monday",
+        "type": "FULL_DAY",
+        "startDate": "2028-05-25",
+        "endDate": "2028-05-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-07-14",
+        "endDate": "2028-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-08-15",
+        "endDate": "2028-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-11-01",
+        "endDate": "2028-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-11-11",
+        "endDate": "2028-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2028-12-25",
+        "endDate": "2028-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2029,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-01-01",
+        "endDate": "2029-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2029-04-06",
+        "endDate": "2029-04-06",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-05-01",
+        "endDate": "2029-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-05-08",
+        "endDate": "2029-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-05-14",
+        "endDate": "2029-05-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Whit Monday",
+        "type": "FULL_DAY",
+        "startDate": "2029-05-25",
+        "endDate": "2029-05-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-07-14",
+        "endDate": "2029-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-08-15",
+        "endDate": "2029-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-11-01",
+        "endDate": "2029-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-11-11",
+        "endDate": "2029-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2029-12-25",
+        "endDate": "2029-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  },
+  {
+    "year": 2030,
+    "holidays": [
+      {
+        "name": "New Year's Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-01-01",
+        "endDate": "2030-01-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Easter Monday",
+        "type": "FULL_DAY",
+        "startDate": "2030-04-06",
+        "endDate": "2030-04-06",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Labour Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-05-01",
+        "endDate": "2030-05-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Victory Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-05-08",
+        "endDate": "2030-05-08",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Ascension Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-05-14",
+        "endDate": "2030-05-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Whit Monday",
+        "type": "FULL_DAY",
+        "startDate": "2030-05-25",
+        "endDate": "2030-05-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Bastille Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-07-14",
+        "endDate": "2030-07-14",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Assumption Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-08-15",
+        "endDate": "2030-08-15",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "All Saints Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-11-01",
+        "endDate": "2030-11-01",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Armistice Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-11-11",
+        "endDate": "2030-11-11",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      },
+      {
+        "name": "Christmas Day",
+        "type": "FULL_DAY",
+        "startDate": "2030-12-25",
+        "endDate": "2030-12-25",
+        "shouldCountTowardHoursWorkedForOvertime": false
+      }
+    ]
+  }
+]
