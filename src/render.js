@@ -46,7 +46,11 @@ export function renderBalances(balances, policies, today) {
       + `<div class="rca-bh"><span class="rca-dot" style="background:${color}"></span>${esc(b.policy)}`
       + (since ? `<span class="rca-bp">${esc(t.periodSince(since))}</span>` : '') + `</div>`
       + `<div class="rca-bar"><div class="${over ? 'rca-bar-over' : ''}" style="width:${pct.toFixed(0)}%${over ? '' : ';background:' + color}"></div></div>`
-      + `<div class="rca-bn">${esc(t.takenVsAccrued(t.policyTotal(fmtDays(b.taken)), t.policyTotal(fmtDays(b.accrued))))}</div>`
+      + (b.split
+        ? [[t.previousPeriod, b.split.previous], [t.currentPeriod, b.split.current]].map(([label, r]) =>
+            `<div class="rca-bn">${esc(label)} : ${esc(t.takenVsAccrued(t.policyTotal(fmtDays(r.taken)), t.policyTotal(fmtDays(r.accrued))))}`
+            + ` · ${esc(t.remaining)} ${days(r.balance)}</div>`).join('')
+        : `<div class="rca-bn">${esc(t.takenVsAccrued(t.policyTotal(fmtDays(b.taken)), t.policyTotal(fmtDays(b.accrued))))}</div>`)
       + `<div class="rca-bm">${meta}</div>`
       + `</div>`;
   }).join('');

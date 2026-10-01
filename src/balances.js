@@ -2,9 +2,13 @@
 
 const num = v => parseFloat(v ?? 0) || 0;
 
+const refPeriod = r => ({ accrued: num(r?.accrued), taken: num(r?.taken), balance: num(r?.balance) });
+
 // Accruing policies with days taken or planned, in API order:
-// [{ policy, accrued, taken, planned, balance, annual, periodStart }], in days.
-// `annual` is null when the policy does not accrue in days.
+// [{ policy, accrued, taken, planned, balance, annual, periodStart, split }],
+// in days. `annual` is null when the policy does not accrue in days.
+// `split` is { previous, current }, each { accrued, taken, balance }, for
+// policies with a previous reference period (French paid leave), else null.
 export function balancesFromSummary(summary) {
   return (summary?.pto_summary ?? [])
     .filter(p => p.isFixedLeavePolicy && p.accruedInCurrentPeriod)
@@ -18,6 +22,9 @@ export function balancesFromSummary(summary) {
         balance: num(p.balanceDays),
         annual: p.accrueInDays ? num(p.hourlyRate) : null,
         periodStart: p.accountingYearStart,
+        split: p.frCopReferencePeriodBalance
+          ? { previous: refPeriod(p.frCopReferencePeriodBalance.previous), current: refPeriod(p.frCopReferencePeriodBalance.current) }
+          : null,
       };
     })
     .filter(b => b.taken > 0 || b.planned > 0);

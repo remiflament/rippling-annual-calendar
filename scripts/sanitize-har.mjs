@@ -37,7 +37,7 @@ const KEEP_KEYS_ONLY_UNDER = { name: 'holidays' };
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}([T ][\d:.]+(Z|[+-]\d{2}:?\d{2})?)?$/;
 const ENUM_RE = /^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$/;
-const NUMERIC_RE = /^-?\d+(\.\d+)?$/;
+const NUMERIC_RE = /^-?\d+(\.\d+)?(E[+-]?\d+)?$/i; // Decimal strings, '0E-10' included
 const ID_RE = /^([0-9a-f]{24}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i;
 
 // Shifts the YYYY-MM-DD part of a date or datetime string, keeps the rest.

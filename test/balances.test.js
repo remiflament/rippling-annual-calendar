@@ -19,8 +19,13 @@ test('fixture: keeps accruing policies in use, in API order', async () => {
   assert.deepEqual(balances[0], {
     policy: 'Congés payés', accrued: 25.33, taken: 6, planned: 0,
     balance: 19.33, annual: 25, periodStart: '2026-06-01',
+    split: {
+      previous: { accrued: 22, taken: 11, balance: 11 },
+      current: { accrued: 8.3333333200, taken: 0, balance: 8.3333333200 },
+    },
   });
   assert.equal(balances[1].balance, -1.51);
+  assert.equal(balances[1].split, null);
   assert.equal(balances[1].planned, 1);
   assert.deepEqual(balances.map(b => b.annual), [25, 10]);
 });

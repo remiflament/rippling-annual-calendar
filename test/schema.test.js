@@ -24,6 +24,12 @@ test('reports pto_summary drift on nested paths', async () => {
     { path: 'pto_summary[0].takenAndScheduled.taken.days', expected: 'numeric', actual: 'undefined' },
   ]);
   assert.deepEqual(validatePtoSummary([]), [{ path: 'pto_summary', expected: 'array', actual: 'undefined' }]);
+  const noPrevious = { pto_summary: [{ ...first, frCopReferencePeriodBalance: { current: first.frCopReferencePeriodBalance.current } }] };
+  assert.deepEqual(validatePtoSummary(noPrevious).map(i => i.path), [
+    'pto_summary[0].frCopReferencePeriodBalance.previous.accrued',
+    'pto_summary[0].frCopReferencePeriodBalance.previous.taken',
+    'pto_summary[0].frCopReferencePeriodBalance.previous.balance',
+  ]);
 });
 
 test('reports drift with path and types only', async () => {

@@ -36,6 +36,7 @@ Fields the script reads (declared in `src/schema.js`):
 | `takenAndScheduled.pending.days` | numeric string | waiting for approval |
 | `balanceDays` | numeric string | `accrued − taken − futureApproved`. Can be negative. |
 | `hourlyRate` | numeric string | despite its name: annual entitlement, in days when `accrueInDays` |
+| `frCopReferencePeriodBalance` | object, optional | Congés payés only: `{ previous, current }`, each `{ accrued, taken, balance }` (decimal strings, `taken` can be `"0E-10"`). French paid leave reference periods: `previous` is N-1 (accrued before `accountingYearStart`), `current` is N. `previous.balance + current.balance = balanceDays` (11 + 8.33 = 19.33). `previous.taken` counts every day taken from N-1, before and after `accountingYearStart` (11, equal to `daysUsed`; 6 of them since `accountingYearStart`). |
 
 Checks on the capture:
 
@@ -54,9 +55,8 @@ Other fields worth knowing:
 | `payFrequency` | enum | accrual frequency: `MONTHLY`, `QUARTERLY`, `ANNUALLY` |
 | `accrualPerPeriodDays` | numeric string | accrued per period, rounded to 2 decimals |
 | `projectedBalanceAtYearEnd.days` | numeric string | balance at the end of the period. Congés payés: 19.33 + 8 months × 2.08 = 36. |
-| `daysUsed`, `daysPending`, `daysScheduled` | numeric string | do not match `takenAndScheduled` (Congés payés `daysUsed` 11 vs taken 6): scope unclear |
+| `daysUsed`, `daysPending`, `daysScheduled` | numeric string | do not match `takenAndScheduled` (Congés payés `daysUsed` 11 vs taken 6). Congés payés `daysUsed` equals `frCopReferencePeriodBalance.previous.taken`. |
 | `balanceCapDays`, `carryoverCapDays` | numeric string or null | caps |
-| `frCopReferencePeriodBalance` | object | Congés payés only: `{ current, previous }`, each `{ accrued, taken, balance }`. `previous.balance + current.accrued = balanceDays` (11 + 8.33 = 19.33). |
 | `expiringDatesAndBalances`, `nextExpirationTotal` | array, object | RTT: unused days expiring at a date |
 | `occurrenceBased`, `isUnpaid` | boolean | event-based leaves (sick, family events) and unpaid ones |
 | `limitPeriods` | array | per-policy limit periods, names are company config |
@@ -66,4 +66,5 @@ Other fields worth knowing:
 
 - A date param giving the balances at another date (would allow other years).
 - Unit of `hourlyRate` when `accrueInDays` is `false` (probably hours).
-- Scope of `daysUsed` versus `takenAndScheduled.taken`.
+- Scope of `daysUsed` on policies without reference periods.
+- Whether `frCopReferencePeriodBalance.previous.taken` includes approved future days.

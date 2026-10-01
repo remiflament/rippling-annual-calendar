@@ -126,7 +126,7 @@
       "frCopReferencePeriodBalance": {
         "current": {
           "accrued": "8.3333333200",
-          "taken": "<redacted:taken>",
+          "taken": "0E-10",
           "balance": "8.3333333200"
         },
         "previous": {

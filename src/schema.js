@@ -42,6 +42,10 @@ export const PTO_SUMMARY_DAYS_PATHS = [
   'takenAndScheduled.pending',
 ];
 
+// `{ accrued, taken, balance }` of each French paid leave reference period,
+// read when `frCopReferencePeriodBalance` is present.
+export const PTO_SUMMARY_REF_PERIOD_FIELDS = { accrued: 'numeric', taken: 'numeric', balance: 'numeric' };
+
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 function typeOf(v) {
@@ -103,6 +107,12 @@ export function validatePtoSummary(data) {
       for (const sub of PTO_SUMMARY_DAYS_PATHS) {
         const obj = sub.split('.').reduce((o, k) => o?.[k], p);
         issues.push(...checkFields(obj, { days: 'numeric' }, `${path}.${sub}`));
+      }
+    }
+    const ref = p?.frCopReferencePeriodBalance;
+    if (ref) {
+      for (const sub of ['previous', 'current']) {
+        issues.push(...checkFields(ref[sub], PTO_SUMMARY_REF_PERIOD_FIELDS, `${path}.frCopReferencePeriodBalance.${sub}`));
       }
     }
     return issues;

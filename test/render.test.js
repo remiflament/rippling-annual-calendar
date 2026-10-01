@@ -52,7 +52,7 @@ test('helpers', () => {
 
 const balance = (over) => ({
   policy: 'Congés payés', accrued: 25.33, taken: 6, planned: 0,
-  balance: 19.33, annual: 25, periodStart: '2026-06-01', ...over,
+  balance: 19.33, annual: 25, periodStart: '2026-06-01', split: null, ...over,
 });
 
 test('no balances block without balances', () => {
@@ -76,6 +76,18 @@ test('negative balance and overdraft are flagged; planned shown when set', () =>
   assert.match(html, /<span class="rca-neg">Solde -1.51 j<\/span>/);
   assert.ok(html.includes('rca-bar-over'));
   assert.ok(html.includes('Prévu 1 j'));
+});
+
+test('balances split N-1 and N when reference periods are known', () => {
+  const split = {
+    previous: { accrued: 22, taken: 11, balance: 11 },
+    current: { accrued: 8.3333333, taken: 0, balance: 8.3333333 },
+  };
+  const html = buildCalendarHTML(2026, [], {}, '2026-10-01', [balance({ split })]);
+  assert.ok(html.includes('N-1 : 11 j pris / 22 j acquis · reste 11 j'));
+  assert.ok(html.includes('N : 0 j pris / 8.33 j acquis · reste 8.33 j'));
+  assert.ok(!html.includes('6 j pris / 25.33 j acquis'));
+  assert.ok(html.includes('Solde 19.33 j'));
 });
 
 test('balances escape policy names', () => {

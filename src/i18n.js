@@ -31,6 +31,9 @@ export const MESSAGES = {
     planned: 'Prévu',
     annual: 'Annuel',
     periodSince: date => `depuis le ${date}`,
+    previousPeriod: 'N-1',
+    currentPeriod: 'N',
+    remaining: 'reste',
   },
   en: {
     months: ['January', 'February', 'March', 'April', 'May', 'June',
@@ -61,6 +64,9 @@ export const MESSAGES = {
     planned: 'Planned',
     annual: 'Annual',
     periodSince: date => `since ${date}`,
+    previousPeriod: 'Y-1',
+    currentPeriod: 'Y',
+    remaining: 'left',
   },
 };
 
