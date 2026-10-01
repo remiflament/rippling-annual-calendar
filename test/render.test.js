@@ -49,3 +49,49 @@ test('helpers', () => {
   assert.equal(esc(`<a href="x">'&`), '&lt;a href=&quot;x&quot;&gt;&#39;&amp;');
   assert.equal(fmtShort('2026-03-05'), '5 mar.');
 });
+
+const balance = (over) => ({
+  policy: 'Congés payés', accrued: 25.33, taken: 6, planned: 0,
+  balance: 19.33, annual: 25, periodStart: '2026-06-01', split: null, ...over,
+});
+
+test('no balances block without balances', () => {
+  assert.ok(!buildCalendarHTML(2026, [req()], {}, '2026-10-01').includes('rca-bal'));
+  assert.ok(!buildCalendarHTML(2026, [req()], {}, '2026-10-01', []).includes('rca-bal'));
+});
+
+test('balances block shows taken vs accrued, balance and annual amount', () => {
+  const html = buildCalendarHTML(2026, [req()], {}, '2026-10-01', [balance()]);
+  assert.ok(html.includes('Soldes au 1 oct.'));
+  assert.ok(html.includes('6 j pris / 25.33 j acquis'));
+  assert.ok(html.includes('Solde 19.33 j'));
+  assert.ok(html.includes('Annuel 25 j'));
+  assert.ok(html.includes('depuis le 1 juin 2026'));
+  assert.ok(!html.includes('Prévu'));
+  assert.ok(html.indexOf('rca-bal') < html.indexOf('rca-legend'));
+});
+
+test('negative balance and overdraft are flagged; planned shown when set', () => {
+  const html = buildCalendarHTML(2026, [], {}, '2026-10-01', [balance({ policy: 'RTT', accrued: 7.49, taken: 9, balance: -1.51, planned: 1 })]);
+  assert.match(html, /<span class="rca-neg">Solde -1.51 j<\/span>/);
+  assert.ok(html.includes('rca-bar-over'));
+  assert.ok(html.includes('Prévu 1 j'));
+});
+
+test('balances split N-1 and N when reference periods are known', () => {
+  const split = {
+    previous: { accrued: 22, taken: 11, balance: 11 },
+    current: { accrued: 8.3333333, taken: 0, balance: 8.3333333 },
+  };
+  const html = buildCalendarHTML(2026, [], {}, '2026-10-01', [balance({ split })]);
+  assert.ok(html.includes('N-1 : 11 j pris / 22 j acquis · reste 11 j'));
+  assert.ok(html.includes('N : 0 j pris / 8.33 j acquis · reste 8.33 j'));
+  assert.ok(!html.includes('6 j pris / 25.33 j acquis'));
+  assert.ok(html.includes('Solde 19.33 j'));
+});
+
+test('balances escape policy names', () => {
+  const html = buildCalendarHTML(2026, [], {}, '2026-10-01', [balance({ policy: '<b>x</b>' })]);
+  assert.ok(!html.includes('<b>x</b>'));
+  assert.ok(html.includes('&lt;b&gt;x&lt;/b&gt;'));
+});

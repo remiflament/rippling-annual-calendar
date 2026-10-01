@@ -17,6 +17,46 @@ export function fmtShort(iso) {
   return d.getDate() + ' ' + t.months[d.getMonth()].slice(0, 3).toLowerCase() + '.';
 }
 
+// '2026-06-01' -> '1 juin 2026'
+export function fmtLong(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return d.getDate() + ' ' + t.months[d.getMonth()].toLowerCase() + ' ' + d.getFullYear();
+}
+
+// 25.333 -> '25.33', 6 -> '6'
+export function fmtDays(n) {
+  return String(Number(n.toFixed(2)));
+}
+
+const NEUTRAL_COLOR = '#9CA3AF';
+
+// Cards "taken vs accrued" per accruing policy. `policies` maps a policy
+// name to its calendar color index, so cards match the calendar colors.
+export function renderBalances(balances, policies, today) {
+  const days = n => esc(t.policyTotal(fmtDays(n)));
+  const cards = balances.map(b => {
+    const color = b.policy in policies ? POLICY_COLORS[policies[b.policy]] : NEUTRAL_COLOR;
+    const over = b.taken > b.accrued;
+    const pct = b.accrued > 0 ? Math.min(100, b.taken / b.accrued * 100) : (b.taken > 0 ? 100 : 0);
+    const since = b.periodStart ? fmtLong(b.periodStart) : '';
+    let meta = `<span class="${b.balance < 0 ? 'rca-neg' : ''}">${esc(t.balance)} ${days(b.balance)}</span>`;
+    if (b.planned > 0) meta += `<span>${esc(t.planned)} ${days(b.planned)}</span>`;
+    if (b.annual !== null) meta += `<span>${esc(t.annual)} ${days(b.annual)}</span>`;
+    return `<div class="rca-bc">`
+      + `<div class="rca-bh"><span class="rca-dot" style="background:${color}"></span>${esc(b.policy)}`
+      + (since ? `<span class="rca-bp">${esc(t.periodSince(since))}</span>` : '') + `</div>`
+      + `<div class="rca-bar"><div class="${over ? 'rca-bar-over' : ''}" style="width:${pct.toFixed(0)}%${over ? '' : ';background:' + color}"></div></div>`
+      + (b.split
+        ? [[t.previousPeriod, b.split.previous], [t.currentPeriod, b.split.current]].map(([label, r]) =>
+            `<div class="rca-bn">${esc(label)} : ${esc(t.takenVsAccrued(t.policyTotal(fmtDays(r.taken)), t.policyTotal(fmtDays(r.accrued))))}`
+            + ` · ${esc(t.remaining)} ${days(r.balance)}</div>`).join('')
+        : `<div class="rca-bn">${esc(t.takenVsAccrued(t.policyTotal(fmtDays(b.taken)), t.policyTotal(fmtDays(b.accrued))))}</div>`)
+      + `<div class="rca-bm">${meta}</div>`
+      + `</div>`;
+  }).join('');
+  return `<div class="rca-bt">${esc(t.balancesTitle(fmtShort(today)))}</div><div class="rca-bal">${cards}</div>`;
+}
+
 export function renderMonth(year, month, absentDays, holidays, todayStr) {
   const firstDay = new Date(year, month, 1);
   const lastDay  = new Date(year, month + 1, 0);
@@ -61,7 +101,7 @@ export function renderMonth(year, month, absentDays, holidays, todayStr) {
   return html;
 }
 
-export function buildCalendarHTML(year, requests, holidays, today = isoLocal(new Date())) {
+export function buildCalendarHTML(year, requests, holidays, today = isoLocal(new Date()), balances = null) {
   const { days: absentDays, policies } = expandToDays(requests);
   const byPolicy = totalsByPolicy(requests);
   const total = Object.values(byPolicy).reduce((a, b) => a + b, 0);
@@ -77,7 +117,10 @@ export function buildCalendarHTML(year, requests, holidays, today = isoLocal(new
   let months = '';
   for (let m = 0; m < 12; m++) months += renderMonth(year, m, absentDays, holidays, today);
 
+  const bal = balances?.length ? renderBalances(balances, policies, today) : '';
+
   return `
+    ${bal}
     <div class="rca-legend">${legend}</div>
     <div class="rca-cal">${months}</div>`;
 }

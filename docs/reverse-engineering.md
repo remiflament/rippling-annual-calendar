@@ -49,7 +49,7 @@ Vary one parameter at a time (dates, `limit`, `offset`, a removed header) to lea
 node scripts/sanitize-har.mjs captures/rippling.har
 ```
 
-Also accepts one raw body: `captures/leave_requests.json` or `captures/holiday_calendar.json`.
+Also accepts one raw body: `captures/leave_requests.json`, `captures/holiday_calendar.json` or `captures/pto_summary.json`.
 
 It writes `fixtures/<endpoint>.json`: same shape, numbers and enum values; ids replaced by stable fake ids; other strings redacted except policy and holiday names; leave request dates shifted by a random number of whole weeks (weekdays and durations stay true). Each run picks a new shift, so a refresh rewrites every date. Then:
 

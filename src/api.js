@@ -1,5 +1,6 @@
 import { reportSchema } from './debug.js';
-import { validateHolidayCalendar, validateLeaveRequests } from './schema.js';
+import { balancesFromSummary } from './balances.js';
+import { validateHolidayCalendar, validateLeaveRequests, validatePtoSummary } from './schema.js';
 
 // Undocumented Rippling API, see docs/api/.
 
@@ -33,6 +34,14 @@ export async function fetchHolidayCalendarRaw() {
   return r.json();
 }
 
+export async function fetchPtoSummaryRaw() {
+  const roleId = localStorage.getItem('role_id');
+  const url = '/api/pto/api/data/get_pto_summary_v2/'
+            + `?includeLongTerm=true&includeUnfulfilledPaidOut=false&role=${roleId}`;
+  const r = await fetch(url, { headers: apiHeaders() });
+  return r.json();
+}
+
 // { 'YYYY-MM-DD': holidayName } for the given year.
 export function holidaysForYear(calendar, year) {
   const entry = calendar.find(e => e.year === year);
@@ -43,9 +52,11 @@ export function holidaysForYear(calendar, year) {
 }
 
 const cache = {}; // { year: { requests, holidays } }
+let balancesCache = null; // snapshot at today's date, not per year
 
 export function clearCache(year) {
   delete cache[year];
+  balancesCache = null;
 }
 
 export async function loadYear(year) {
@@ -58,4 +69,13 @@ export async function loadYear(year) {
   reportSchema('get_holiday_calendar', validateHolidayCalendar(calendar));
   cache[year] = { requests, holidays: holidaysForYear(calendar, year) };
   return cache[year];
+}
+
+// Balances of accruing policies at today's date, see src/balances.js.
+export async function loadBalances() {
+  if (balancesCache) return balancesCache;
+  const summary = await fetchPtoSummaryRaw();
+  reportSchema('get_pto_summary_v2', validatePtoSummary(summary));
+  balancesCache = balancesFromSummary(summary);
+  return balancesCache;
 }
