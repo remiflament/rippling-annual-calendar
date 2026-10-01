@@ -15,6 +15,13 @@ await build({
 
 await build({
   ...common,
+  entryPoints: ['src/main.js'],
+  outfile: 'dist/rippling-annual-calendar.dev.user.js',
+  banner: { js: userscriptHeader(version, { dev: true }) },
+});
+
+await build({
+  ...common,
   entryPoints: ['probe/probe.js'],
   outfile: 'dist/probe.js',
 });
