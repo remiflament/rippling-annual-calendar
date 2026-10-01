@@ -24,7 +24,7 @@ docs/api/       reverse-engineered API reference
 
 ## Offline demo
 
-`npm run build`, then open `demo/index.html` in a browser. It renders the calendar from `fixtures/` with a stubbed `fetch`: no Rippling session needed. `?year=2026` picks the year; the default is the year with most fixture requests.
+`npm run build`, then open `demo/index.html` in a browser. It renders the calendar from `fixtures/` with a stubbed `fetch`: no Rippling session needed. `?year=2026` picks the year; the default is the year with most fixture requests. The demo sets "today" in that year (same day as the `pto_summary` capture) so the balances block shows there.
 
 `docs/screenshot.png` comes from this page (panel only, 1280×1000 viewport). Regenerate it after a visual change, never from a real Rippling session.
 
