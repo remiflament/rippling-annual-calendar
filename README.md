@@ -8,6 +8,10 @@ Userscript that adds a yearly leave calendar to [Rippling](https://app.rippling.
 - tooltips with period, duration, reason and status
 - year navigation (buttons or arrow keys)
 
+![Yearly calendar with leaves colored by policy, public holidays and a tooltip](docs/screenshot.png)
+
+<sub>Screenshot from the offline demo, with anonymized data.</sub>
+
 The script runs in your browser only. It reads your own data through the same API the Rippling web app uses, with your current session. Nothing is sent anywhere else.
 
 ## Install

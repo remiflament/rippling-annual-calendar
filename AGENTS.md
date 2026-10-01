@@ -6,6 +6,7 @@ Userscript (Violentmonkey) that adds a yearly leave calendar to `app.rippling.co
 
 - **Pure core**: `calendar.js` (requests to days, totals), `render.js` (HTML strings), `schema.js` (response shapes), `i18n.js`. These modules take data and return data, so `node --test` covers them without a DOM or network.
 - **Browser shell**: `api.js` (fetch + cache), `modal.js` (DOM, events), `main.js` (button injection, SPA navigation hooks), `debug.js`.
+- **Offline demo**: `demo/` renders the calendar from `fixtures/` with a stubbed `fetch`. Check visual changes there; it is also the only source for `docs/screenshot.png`.
 - Put new logic in the pure core and keep the shell thin.
 - The bundle ships with zero runtime dependencies.
 

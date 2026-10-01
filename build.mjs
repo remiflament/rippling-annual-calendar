@@ -19,4 +19,10 @@ await build({
   outfile: 'dist/probe.js',
 });
 
+await build({
+  ...common,
+  entryPoints: ['demo/demo.js'],
+  outfile: 'dist/demo.js',
+});
+
 console.log(`built v${version} -> dist/`);
