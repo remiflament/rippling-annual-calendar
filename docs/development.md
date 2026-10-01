@@ -5,7 +5,7 @@ Requires Node.js 22+.
 ```bash
 npm install
 npm test        # unit tests (node:test)
-npm run build   # dist/: userscript, probe.js, demo.js
+npm run build   # dist/: userscript (release and dev), probe.js, demo.js
 ```
 
 ## Layout
@@ -30,10 +30,12 @@ docs/api/       reverse-engineered API reference
 
 ## Try a local build in the browser
 
+`dist/rippling-annual-calendar.dev.user.js` is the same bundle with `(dev)` appended to `@name` and no update URLs: it installs next to the released script instead of replacing it. Keep only one of the two enabled: both inject the same button and modal.
+
 Violentmonkey can track a local file:
 
 1. `npm run build`.
-2. Open `dist/rippling-annual-calendar.user.js` in the browser (`file://…`). On Chrome, allow file access for the extension first.
+2. Open `dist/rippling-annual-calendar.dev.user.js` in the browser (`file://…`). On Chrome, allow file access for the extension first.
 3. On the install page, check **Track local file** and keep the tab open. Each rebuild reloads the script.
 
 Otherwise, paste the built file in a new script in the dashboard.
