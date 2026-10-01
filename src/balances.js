@@ -2,7 +2,7 @@
 
 const num = v => parseFloat(v ?? 0) || 0;
 
-// Accruing policies only, in API order:
+// Accruing policies with days taken or planned, in API order:
 // [{ policy, accrued, taken, planned, balance, annual, periodStart }], in days.
 // `annual` is null when the policy does not accrue in days.
 export function balancesFromSummary(summary) {
@@ -19,5 +19,6 @@ export function balancesFromSummary(summary) {
         annual: p.accrueInDays ? num(p.hourlyRate) : null,
         periodStart: p.accountingYearStart,
       };
-    });
+    })
+    .filter(b => b.taken > 0 || b.planned > 0);
 }

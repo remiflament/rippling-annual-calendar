@@ -13,16 +13,26 @@ const policy = (over) => ({
   ...over,
 });
 
-test('fixture: keeps the 4 accruing policies in API order', async () => {
+test('fixture: keeps accruing policies in use, in API order', async () => {
   const balances = balancesFromSummary(await fixture());
-  assert.deepEqual(balances.map(b => b.policy), ['Congés payés', 'RTT', 'Congé enfant malade', 'Short Stay']);
+  assert.deepEqual(balances.map(b => b.policy), ['Congés payés', 'RTT']);
   assert.deepEqual(balances[0], {
     policy: 'Congés payés', accrued: 25.33, taken: 6, planned: 0,
     balance: 19.33, annual: 25, periodStart: '2026-06-01',
   });
   assert.equal(balances[1].balance, -1.51);
   assert.equal(balances[1].planned, 1);
-  assert.deepEqual(balances.map(b => b.annual), [25, 10, 5, 20]);
+  assert.deepEqual(balances.map(b => b.annual), [25, 10]);
+});
+
+test('skips policies with nothing taken or planned', () => {
+  const none = { taken: { days: '0.00' }, futureApproved: { days: '0.00' }, pending: { days: '0.00' } };
+  const pendingOnly = { ...none, pending: { days: '1.00' } };
+  const balances = balancesFromSummary({ pto_summary: [
+    policy({ policyDisplayName: 'A', takenAndScheduled: none }),
+    policy({ policyDisplayName: 'B', takenAndScheduled: pendingOnly }),
+  ] });
+  assert.deepEqual(balances.map(b => b.policy), ['B']);
 });
 
 test('planned sums future approved and pending days', () => {

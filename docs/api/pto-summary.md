@@ -1,6 +1,6 @@
 # `GET /api/pto/api/data/get_pto_summary_v2/`
 
-Leave balances of the current employee, one entry per leave policy. The Time Off page calls it on load. The script reads it for the "taken vs accrued" block, shown on the current year only.
+Leave balances of the current employee, one entry per leave policy. The Time Off page calls it on load. The script reads it for the "taken vs accrued" block, shown on the current year only, for accruing policies with days taken or planned.
 
 Source of every fact below: **capture 2026-10-01** (one employee account, 31 policies, 4 of them accruing), unless marked **code**.
 
