@@ -38,7 +38,7 @@ const h = {
   requestedAccessLevel: 'EE',
 };
 const role = localStorage.getItem('role_id');
-await (await fetch(`/api/pto/api/leave_requests/?role=${role}&limit=200&start=2026-01-01&end=2026-12-31`, { headers: h })).json();
+await (await fetch(`/api/pto/api/leave_requests/?role=${role}&limit=200&endDate__gte=2026-01-01&startDate__lte=2026-12-31`, { headers: h })).json();
 ```
 
 Vary one parameter at a time (dates, `limit`, `offset`, a removed header) to learn its effect.

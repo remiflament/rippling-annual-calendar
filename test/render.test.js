@@ -4,7 +4,7 @@ import { buildCalendarHTML, esc, fmtShort } from '../src/render.js';
 
 const req = (over) => ({
   startDate: '2026-03-02', endDate: '2026-03-02', status: 'APPROVED',
-  policyDisplayName: 'Congés payés', numMinutes: '468', reasonForLeave: '',
+  policyDisplayName: 'Congés payés', numDays: '1.00', reasonForLeave: '',
   ...over,
 });
 
@@ -39,7 +39,7 @@ test('escapes user content', () => {
 });
 
 test('legend shows per policy and total days', () => {
-  const html = buildCalendarHTML(2026, [req(), req({ policyDisplayName: 'RTT', numMinutes: '234' })], {}, '2026-01-01');
+  const html = buildCalendarHTML(2026, [req(), req({ policyDisplayName: 'RTT', numDays: '0.50' })], {}, '2026-01-01');
   assert.ok(html.includes('Congés payés — 1.0 j'));
   assert.ok(html.includes('RTT — 0.5 j'));
   assert.ok(html.includes('Total : 1.5 j'));

@@ -63,7 +63,7 @@ export function renderMonth(year, month, absentDays, holidays, todayStr) {
 
 export function buildCalendarHTML(year, requests, holidays, today = isoLocal(new Date())) {
   const { days: absentDays, policies } = expandToDays(requests);
-  const byPolicy = totalsByPolicy(requests);
+  const byPolicy = totalsByPolicy(requests, year);
   const total = Object.values(byPolicy).reduce((a, b) => a + b, 0);
 
   let legend = Object.entries(policies)

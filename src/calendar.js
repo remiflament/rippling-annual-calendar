@@ -8,14 +8,25 @@ export const POLICY_COLORS = [
 // Statuses shown on the calendar and counted in totals.
 export const COUNTED_STATUSES = ['APPROVED', 'PENDING'];
 
-// Assumed length of a working day in `numMinutes` (7.8 h).
-export const MINUTES_PER_DAY = 468;
-
 function policyName(r) {
   return r.policyDisplayName || '??';
 }
 
-// Maps each day of every counted request to its absence info.
+// Weekdays (Mon-Fri) from startDate to endDate, inclusive, as Date objects.
+// Rippling's `numDays` excludes weekends, so the calendar does too.
+function workingDays(r) {
+  const out = [];
+  const end = new Date(r.endDate + 'T00:00:00');
+  const maxDays = 365;
+  let iter = 0;
+  for (const d = new Date(r.startDate + 'T00:00:00'); d <= end && iter < maxDays; d.setDate(d.getDate() + 1), iter++) {
+    const wd = d.getDay();
+    if (wd !== 0 && wd !== 6) out.push(new Date(d));
+  }
+  return out;
+}
+
+// Maps each working day of every counted request to its absence info.
 // Returns { days: { 'YYYY-MM-DD': info }, policies: { name: colorIdx } }.
 export function expandToDays(requests) {
   const policies = {};
@@ -26,30 +37,30 @@ export function expandToDays(requests) {
   }
   for (const r of requests) {
     if (!COUNTED_STATUSES.includes(r.status)) continue;
-    const start = new Date(r.startDate + 'T00:00:00');
-    const end   = new Date(r.endDate   + 'T00:00:00');
     const policy = policyName(r);
-    const daysCount = Math.round(parseFloat(r.numMinutes || 0) / MINUTES_PER_DAY);
-    const maxDays = 365;
-    let iter = 0;
-    for (const d = new Date(start); d <= end && iter < maxDays; d.setDate(d.getDate() + 1), iter++) {
+    for (const d of workingDays(r)) {
       days[isoLocal(d)] = {
         policy, reason: r.reasonForLeave || '', status: r.status,
         colorIdx: policies[policy], start: r.startDate,
-        end: r.endDate, days: daysCount,
+        end: r.endDate, days: parseFloat(r.numDays || 0),
       };
     }
   }
   return { days, policies };
 }
 
-// Total days per policy for counted requests.
-export function totalsByPolicy(requests) {
+// Total days per policy for counted requests, within `year`. A request
+// spanning New Year splits its `numDays` by the share of its working days
+// that fall in `year`.
+export function totalsByPolicy(requests, year) {
   const byPolicy = {};
   for (const r of requests) {
     if (!COUNTED_STATUSES.includes(r.status)) continue;
+    const wds = workingDays(r);
+    if (!wds.length) continue;
+    const inYear = wds.filter(d => d.getFullYear() === year).length;
     const p = policyName(r);
-    byPolicy[p] = (byPolicy[p] || 0) + parseFloat(r.numMinutes || 0) / MINUTES_PER_DAY;
+    byPolicy[p] = (byPolicy[p] || 0) + parseFloat(r.numDays || 0) * inYear / wds.length;
   }
   return byPolicy;
 }

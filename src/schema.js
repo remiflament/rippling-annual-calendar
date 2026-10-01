@@ -10,7 +10,7 @@ export const LEAVE_REQUEST_FIELDS = {
   endDate: 'date',
   status: 'string',
   policyDisplayName: 'string',
-  numMinutes: 'numeric',
+  numDays: 'numeric',
   reasonForLeave: 'string?',
 };
 

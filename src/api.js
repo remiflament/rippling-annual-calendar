@@ -17,8 +17,9 @@ export function apiHeaders() {
 
 export async function fetchLeaveRequestsRaw(year) {
   const roleId = localStorage.getItem('role_id');
+  // Requests overlapping the year; `start`/`end` are ignored by the API.
   const url = `/api/pto/api/leave_requests/?role=${roleId}&limit=200`
-            + `&start=${year}-01-01&end=${year}-12-31`;
+            + `&endDate__gte=${year}-01-01&startDate__lte=${year}-12-31`;
   const r = await fetch(url, { headers: apiHeaders() });
   return r.json();
 }

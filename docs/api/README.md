@@ -11,7 +11,7 @@ Each fact carries a source:
 |---|---|---|
 | `GET /api/pto/api/leave_requests/` | leave requests of a year | [leave-requests.md](leave-requests.md) |
 | `POST /api/pto/api/get_holiday_calendar/` | public holidays | [holiday-calendar.md](holiday-calendar.md) |
-| `POST /api/pto/api/get_avg_hours_in_day/` | length of a day (not used yet) | [leave-requests.md](leave-requests.md#day-length-get_avg_hours_in_day) |
+| `POST /api/pto/api/get_avg_hours_in_day/` | length of a day (not used) | [leave-requests.md](leave-requests.md#day-length-get_avg_hours_in_day) |
 
 Seen on the Time Off page load but not studied (capture 2026-10-01): `GET /api/pto/api/data/get_pto_summary_v2/?includeLongTerm=true&includeUnfulfilledPaidOut=false&role=<role_id>` (about 50 KB, content not inspected), `POST /api/pto/api/leave_policies/get_eligible_policies/`, `POST /api/pto/api/time_off_settings/`, `GET /api/pto/api/get_fixed_company_leave_types/`. The Time Off page itself does not call `leave_requests`.
 
